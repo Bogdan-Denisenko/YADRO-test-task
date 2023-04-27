@@ -55,6 +55,9 @@ func ParseFile(filePath string) (int, time.Time, time.Time, int, []Event, error)
 			return 0, time.Time{}, time.Time{}, 0, nil, errors.New(scanner.Text())
 		}
 	}
+	if numTables <= 0 {
+		return 0, time.Time{}, time.Time{}, 0, nil, errors.New(scanner.Text())
+	}
 
 	// время начала и окончания работы
 	if scanner.Scan() {
@@ -84,6 +87,9 @@ func ParseFile(filePath string) (int, time.Time, time.Time, int, []Event, error)
 		if err != nil {
 			return 0, time.Time{}, time.Time{}, 0, nil, errors.New(scanner.Text())
 		}
+	}
+	if hourCost <= 0 {
+		return 0, time.Time{}, time.Time{}, 0, nil, errors.New(scanner.Text())
 	}
 
 	// События
